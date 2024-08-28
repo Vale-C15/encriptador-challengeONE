@@ -1,5 +1,18 @@
+function validarTexto(texto) {
+    // Expresión regular para detectar mayúsculas y letras con tildes
+    const regex = /[A-ZÁÉÍÓÚÑ]/;
+    if (regex.test(texto)) {
+        alert("Por favor, ingresa solo letras minúsculas sin tildes.");
+        return false;
+    }
+    return true;
+}
+
 function encriptar() {
     let texto = document.getElementById('inputText').value;
+    if (!validarTexto(texto)) {
+        return; 
+    }
     let textoEncriptado = texto
         .replace(/e/g, 'enter')
         .replace(/i/g, 'imes')
@@ -11,6 +24,9 @@ function encriptar() {
 
 function desencriptar() {
     let texto = document.getElementById('inputText').value;
+    if (!validarTexto(texto)) {
+        return; 
+    }
     let textoDesencriptado = texto
         .replace(/enter/g, 'e')
         .replace(/imes/g, 'i')
